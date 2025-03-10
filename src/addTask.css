@@ -36,6 +36,7 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;
+    padding-bottom: 15px;
   }
   
   button:hover {

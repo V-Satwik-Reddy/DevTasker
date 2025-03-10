@@ -67,6 +67,7 @@ const Dashboard = () => {
         )}
       </div>
       <button className="logout-btn" onClick={handleLogout}>Logout</button>
+      <button className="add-task-btn" onClick={() => navigate("/add-task")}>+</button>
     </div>
     );
     

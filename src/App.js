@@ -6,6 +6,8 @@ import Dashboard from "./dashboard";
 import NavbarComponent from "./components/navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingPage from "./Landingpage";
+import AddTask from "./addTask";
+
 const ProtectedRoute = ({ element }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
 
@@ -38,6 +40,8 @@ function App() {
               <Route path="/" element={<LandingPage />} />
                 <Route path="/Auth" element={<Auth />} />
                 <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+                <Route path="/add-task" element={<ProtectedRoute element={<AddTask />} />} />
+
             </Routes>
         </Router>
     );
