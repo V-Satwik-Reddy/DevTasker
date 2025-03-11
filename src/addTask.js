@@ -48,6 +48,7 @@ const AddTask = () => {
                 <input type="text" name="title" placeholder="Title" value={task.title} onChange={handleChange} required />
                 <textarea name="description" placeholder="Description" value={task.description} onChange={handleChange} required />
                 <select name="priority" value={task.priority} onChange={handleChange}>
+                <option value="Critical">Critical</option>
                     <option value="High">High</option>
                     <option value="Medium">Medium</option>
                     <option value="Low">Low</option>
