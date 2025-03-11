@@ -26,10 +26,17 @@ function NavbarComponent() {
         setUser(null);
       }
     };
-
+    
     fetchUser();
+    
   }, []);
-
+  const handleLogout = async () => {
+    await fetch("http://localhost:5000/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    navigate("/");
+  };
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
@@ -49,18 +56,29 @@ function NavbarComponent() {
             </NavDropdown>
           </Nav>
           <Nav>
+            
             <Nav.Link href="#deets">More deets</Nav.Link>
-            {user ? (
-              <Nav.Link onClick={() => navigate("/dashboard")} className="profile-container">
-                {user.image ? (
-                  <img src={user.image} alt="Profile" className="profile-img" />
+            <NavDropdown
+              title={
+                user ? (
+                  user.image ? (
+                    <img src={user.image} alt="Profile" className="profile-img" />
+                  ) : (
+                    <span className="profile-letter">{user.username[0].toUpperCase()}</span>
+                  )
                 ) : (
-                  <span className="profile-letter">{user.username[0].toUpperCase()}</span>
-                )}
-              </Nav.Link>
-            ) : (
-              <Nav.Link as={Link} to="/Auth">Login/Signup</Nav.Link>
-            )}
+                  "Account"
+                )
+              }
+              id="profile-dropdown"
+              align="end"
+            >
+              <NavDropdown.Item href="#action/1">Option 1</NavDropdown.Item>
+              <NavDropdown.Item href="#action/2">Option 2</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+            </NavDropdown>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
