@@ -2,75 +2,78 @@
     max-width: 600px;
     margin: 40px auto;
     padding: 20px;
-    background: #fff;
+    background: #282c34;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+}
+
+h2 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #333;
-  }
-  
-  p {
+    color: #61dafb;
+}
+
+p {
     font-size: 16px;
-    color: #555;
+    color: #ddd;
     line-height: 1.5;
-  }
-  
-  label {
+}
+
+label {
     display: block;
     font-size: 14px;
     font-weight: bold;
     margin-top: 15px;
-    color: #444;
-  }
-  
-  select, input {
+    color: #bbb;
+}
+
+select, input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
     font-size: 14px;
-    border: 1px solid #ddd;
+    border: 1px solid #61dafb;
     border-radius: 6px;
-    background: #0c0000;
-  }
-  
-  button {
+    background: #3a3f47;
+    color: white;
+}
+
+button {
     display: block;
     width: 100%;
     padding: 12px;
     margin-top: 20px;
     font-size: 16px;
     font-weight: bold;
-    color: white;
-    background: #007bff;
+    color: black;
+    background: #61dafb;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease;
-  }
-  
-  button:hover {
-    background: #0056b3;
-  }
-  
-  h3 {
+}
+
+button:hover {
+    background: #4fa3d1;
+}
+
+h3 {
     font-size: 18px;
     margin-top: 20px;
-    color: #222;
-  }
-  
-  input[type="file"] {
+    color: #61dafb;
+}
+
+input[type="file"] {
     border: none;
     background: none;
     font-size: 14px;
-  }
-  
-  @media (max-width: 768px) {
+    color: white;
+}
+
+@media (max-width: 768px) {
     .task-details-container {
-      max-width: 90%;
+        max-width: 90%;
     }
-  }
-  
+}

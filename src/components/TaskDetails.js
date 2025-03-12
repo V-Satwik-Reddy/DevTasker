@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./TaskDetails.css";
+
 const TaskDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [task, setTask] = useState(null);
   const [status, setStatus] = useState("");
@@ -14,48 +16,60 @@ const TaskDetails = () => {
     const fetchTask = async () => {
       try {
         const res = await fetch(`http://localhost:5000/tasks/task/${id}`, {
-            method: "GET",
-            credentials: "include", // Send cookies with request
+          method: "GET",
+          credentials: "include",
         });
 
         if (!res.ok) throw new Error("Failed to fetch task");
-        if(!res.ok){
-            const taskdata = res.json();
-            console.log(taskdata);
-        }
+
         const data = await res.json();
         setTask(data);
         setStatus(data.status);
         setPriority(data.priority);
-        setDueDate(data.dueDate.split("T")[0]); // Format YYYY-MM-DD
+        setDueDate(data.dueDate.split("T")[0]);
       } catch (error) {
         console.error("Error fetching task:", error);
       }
     };
     fetchTask();
   }, [id]);
-  
 
   const handleUpdate = async () => {
     try {
-        await axios.put(`http://localhost:5000/tasks/updateTask/${id}
-`, { status, priority, dueDate }, {
-            withCredentials: true, // Ensure cookies are sent if authentication is needed
-        });
-        alert("Task updated successfully!");
+      await axios.put(
+        `http://localhost:5000/tasks/updateTask/${id}`,
+        { status, priority, dueDate },
+        { withCredentials: true }
+      );
+      alert("Task updated successfully!");
+      navigate(`/dashboard`);
     } catch (error) {
-        console.error("Error updating task:", error.response?.data || error.message);
+      console.error("Error updating task:", error.response?.data || error.message);
     }
-};
+  };
 
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this task?");
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`http://localhost:5000/tasks/deleteTask/${id}`, {
+        withCredentials: true,
+      });
+      alert("Task deleted successfully!");
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Error deleting task:", error.response?.data || error.message);
+    }
+  };
 
   const handleFileUpload = async () => {
     const formData = new FormData();
     formData.append("file", file);
-    
+
     try {
       await axios.post(`http://localhost:5000/tasks/task/${id}/upload`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       });
       alert("File uploaded successfully!");
     } catch (error) {
@@ -90,7 +104,11 @@ const TaskDetails = () => {
         Due Date:
         <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
       </label>
-      <button onClick={handleUpdate}>Update Task</button>
+
+      <div className="grid2">
+        <button onClick={handleUpdate}>Update Task</button>
+        <button onClick={handleDelete} className="delete-btn">Delete Task</button>
+      </div>
 
       <h3>Upload Completion File:</h3>
       <input type="file" onChange={(e) => setFile(e.target.files[0])} />
