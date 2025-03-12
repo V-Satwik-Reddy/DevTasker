@@ -4,8 +4,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { FaUserCircle } from "react-icons/fa";
 import "./Navbar.css";
-function NavbarComponent() {
+
+function NavbarComponent({ refresh }) {  // 👈 Receive refresh prop
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -19,24 +21,28 @@ function NavbarComponent() {
 
         if (response.ok) {
           const data = await response.json();
-          setUser(data.user); // Expected response: { user: { username, image } }
+          setUser(data.user);
+        } else {
+          setUser(null);
         }
       } catch (error) {
         console.error("Error fetching user:", error);
         setUser(null);
       }
     };
-    
+
     fetchUser();
-    
-  }, []);
+  }, [refresh]); // 👈 Re-fetch when refresh changes
+
   const handleLogout = async () => {
     await fetch("http://localhost:5000/auth/logout", {
       method: "POST",
       credentials: "include",
     });
+    setUser(null);
     navigate("/");
   };
+
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
@@ -47,38 +53,28 @@ function NavbarComponent() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-            </NavDropdown>
           </Nav>
           <Nav>
-            
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <NavDropdown
-              title={
-                user ? (
+            {user ? (
+              <NavDropdown
+                title={
                   user.image ? (
                     <img src={user.image} alt="Profile" className="profile-img" />
                   ) : (
-                    <span className="profile-letter">{user.username[0].toUpperCase()}</span>
+                    <FaUserCircle size={24} className="user-icon" />
                   )
-                ) : (
-                  "Account"
-                )
-              }
-              id="profile-dropdown"
-              align="end"
-            >
-              <NavDropdown.Item href="#action/1">Option 1</NavDropdown.Item>
-              <NavDropdown.Item href="#action/2">Option 2</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-            </NavDropdown>
-
+                }
+                id="profile-dropdown"
+                align="end"
+              >
+                <NavDropdown.Item>Profile</NavDropdown.Item>
+                <NavDropdown.Item>Settings</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <Nav.Link as={Link} to="/auth">Login / Signup</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

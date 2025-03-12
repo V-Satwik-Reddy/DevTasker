@@ -7,6 +7,7 @@ import NavbarComponent from "./components/navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingPage from "./Landingpage";
 import AddTask from "./addTask";
+import TaskDetails from "./components/TaskDetails";
 
 const ProtectedRoute = ({ element }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -33,15 +34,17 @@ const ProtectedRoute = ({ element }) => {
 };
 
 function App() {
+    const [refreshNavbar, setRefreshNavbar] = useState(false);
+
     return (
         <Router>
-            <NavbarComponent />
+            <NavbarComponent key={refreshNavbar} />
             <Routes>
               <Route path="/" element={<LandingPage />} />
-                <Route path="/Auth" element={<Auth />} />
+                <Route path="/Auth" element={<Auth onLoginSuccess={() => setRefreshNavbar(prev => !prev)} />} />
                 <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
                 <Route path="/add-task" element={<ProtectedRoute element={<AddTask />} />} />
-
+                <Route path="/task/:id" element={<ProtectedRoute element={<TaskDetails />} />} />
             </Routes>
         </Router>
     );

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 
-const Auth = () => {
+const Auth = ({ onLoginSuccess }) => {
     const [isSignup, setIsSignup] = useState(false);
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     const [formData, setFormData] = useState({ email: "", password: "", username: "" });
@@ -33,47 +33,50 @@ const Auth = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch("http://localhost:5000/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify({ email: formData.email, password: formData.password }),
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                navigate("/dashboard");
-            } else {
-                alert(data.message || "Login failed");
+        const handleLogin = async (e) => {
+            e.preventDefault();
+            try {
+                const response = await fetch("http://localhost:5000/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({ email: formData.email, password: formData.password }),
+                });
+    
+                const data = await response.json();
+                if (response.ok) {
+                    onLoginSuccess(); // Refresh navbar
+                    navigate("/dashboard");
+                } else {
+                    alert(data.message || "Login failed");
+                }
+            } catch (error) {
+                console.error("Login error:", error);
             }
-        } catch (error) {
-            console.error("Login error:", error);
-        }
-    };
-
-    const handleSignup = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch("http://localhost:5000/auth/signup", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify(formData),
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                navigate("/dashboard");
-            } else {
-                alert(data.message || "Signup failed");
+        };
+    
+        const handleSignup = async (e) => {
+            e.preventDefault();
+            try {
+                const response = await fetch("http://localhost:5000/auth/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify(formData),
+                });
+    
+                const data = await response.json();
+                if (response.ok) {
+                    onLoginSuccess(); // Refresh navbar
+                    navigate("/dashboard");
+                } else {
+                    alert(data.message || "Signup failed");
+                }
+            } catch (error) {
+                console.error("Signup error:", error);
             }
-        } catch (error) {
-            console.error("Signup error:", error);
-        }
-    };
+        };
+    
 
     if (isCheckingAuth) return <div>Loading...</div>;
 
