@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
-
-const Auth = ({ onLoginSuccess }) => {
+import { FaGoogle } from "react-icons/fa";
+const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     const [formData, setFormData] = useState({ email: "", password: "", username: "" });
@@ -15,7 +15,7 @@ const Auth = ({ onLoginSuccess }) => {
                     method: "GET",
                     credentials: "include",
                 });
-
+    
                 if (response.ok) {
                     navigate("/dashboard");
                 }
@@ -25,9 +25,15 @@ const Auth = ({ onLoginSuccess }) => {
                 setIsCheckingAuth(false);
             }
         };
-
+    
         checkAuth();
+    
+        // Check if the user is coming from Google OAuth redirect
+        if (window.location.pathname === "/auth/google/callback") {
+            window.location.href = "/dashboard"; // Redirect to dashboard after login
+        }
     }, [navigate]);
+    
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,7 +51,6 @@ const Auth = ({ onLoginSuccess }) => {
     
                 const data = await response.json();
                 if (response.ok) {
-                    onLoginSuccess(); // Refresh navbar
                     navigate("/dashboard");
                 } else {
                     alert(data.message || "Login failed");
@@ -67,7 +72,6 @@ const Auth = ({ onLoginSuccess }) => {
     
                 const data = await response.json();
                 if (response.ok) {
-                    onLoginSuccess(); // Refresh navbar
                     navigate("/dashboard");
                 } else {
                     alert(data.message || "Signup failed");
@@ -94,6 +98,9 @@ const Auth = ({ onLoginSuccess }) => {
                                 <input type="email" placeholder="Email" name="email" className="flip-card__input" required onChange={handleChange} />
                                 <input type="password" placeholder="Password" name="password" className="flip-card__input" required onChange={handleChange} />
                                 <button type="submit" className="flip-card__btn">Let’s go!</button>
+                                <a href="http://localhost:5000/auth/google" className="google-btn">
+                                    <FaGoogle className="icon" /> Log In With Google
+                                </a>
                             </form>
                         </div>
                         <div className="flip-card__back">
@@ -103,6 +110,9 @@ const Auth = ({ onLoginSuccess }) => {
                                 <input type="email" placeholder="Email" name="email" className="flip-card__input" required onChange={handleChange} />
                                 <input type="password" placeholder="Password" name="password" className="flip-card__input" required onChange={handleChange} />
                                 <button type="submit" className="flip-card__btn">Confirm!</button>
+                                <a href="http://localhost:5000/auth/google" className="google-btn">
+                                    <FaGoogle className="icon" /> Log In With Google
+                                </a>
                             </form>
                         </div>
                     </div>
