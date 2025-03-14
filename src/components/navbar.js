@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -7,39 +7,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaUserCircle } from "react-icons/fa";
 import "./Navbar.css";
 
-function NavbarComponent({ refresh }) {  // 👈 Receive refresh prop
-  const [user, setUser] = useState(null);
+function NavbarComponent({ refresh ,user}) {  // 👈 Receive refresh prop
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/auth/verify", {
-          method: "GET",
-          credentials: "include",
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data.user);
-        } else {
-          setUser(null);
-        }
-      } catch (error) {
-        console.error("Error fetching user:", error);
-        setUser(null);
-      }
-    };
-
-    fetchUser();
-  }, [refresh]); // 👈 Re-fetch when refresh changes
+  
 
   const handleLogout = async () => {
     await fetch("http://localhost:5000/auth/logout", {
       method: "POST",
       credentials: "include",
     });
-    setUser(null);
     navigate("/");
   };
 
