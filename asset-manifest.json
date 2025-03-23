@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/V-Satwik-Reddy/DevTasker/static/css/main.543c6102.css",
-    "main.js": "/V-Satwik-Reddy/DevTasker/static/js/main.ce8d0e19.js",
-    "static/js/453.72977e62.chunk.js": "/V-Satwik-Reddy/DevTasker/static/js/453.72977e62.chunk.js",
-    "index.html": "/V-Satwik-Reddy/DevTasker/index.html",
-    "main.543c6102.css.map": "/V-Satwik-Reddy/DevTasker/static/css/main.543c6102.css.map",
-    "main.ce8d0e19.js.map": "/V-Satwik-Reddy/DevTasker/static/js/main.ce8d0e19.js.map",
-    "453.72977e62.chunk.js.map": "/V-Satwik-Reddy/DevTasker/static/js/453.72977e62.chunk.js.map"
+    "main.css": "/DevTasker/static/css/main.543c6102.css",
+    "main.js": "/DevTasker/static/js/main.b4ce5c18.js",
+    "static/js/453.72977e62.chunk.js": "/DevTasker/static/js/453.72977e62.chunk.js",
+    "index.html": "/DevTasker/index.html",
+    "main.543c6102.css.map": "/DevTasker/static/css/main.543c6102.css.map",
+    "main.b4ce5c18.js.map": "/DevTasker/static/js/main.b4ce5c18.js.map",
+    "453.72977e62.chunk.js.map": "/DevTasker/static/js/453.72977e62.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.543c6102.css",
-    "static/js/main.ce8d0e19.js"
+    "static/js/main.b4ce5c18.js"
   ]
 }
