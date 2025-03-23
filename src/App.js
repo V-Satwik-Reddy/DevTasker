@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingPage from "./Landingpage";
 import AddTask from "./addTask";
 import TaskDetails from "./components/TaskDetails";
-
+<Router basename="/DevTasker"></Router>
 const ProtectedRoute = ({ element: Component }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
