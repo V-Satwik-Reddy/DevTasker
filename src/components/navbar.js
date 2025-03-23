@@ -14,7 +14,7 @@ function NavbarComponent({ refresh ,user}) {  // 👈 Receive refresh prop
   
 
   const handleLogout = async () => {
-    await fetch("http://localhost:5000/auth/logout", {
+    await fetch("https://devtaskerb.up.railway.app/auth/logout", {
       method: "POST",
       credentials: "include",
     });

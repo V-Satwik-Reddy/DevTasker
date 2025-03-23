@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./addTask.css";
 import { faker } from "@faker-js/faker";
 
-const API_URL = "http://localhost:5000/tasks/createTask";
+const API_URL = "https://devtaskerb.up.railway.app/tasks/createTask";
 
 const AddTask = () => {
     const navigate = useNavigate();
@@ -40,35 +40,42 @@ const AddTask = () => {
         }
     };
 
-    // ✅ Separate function to bulk-generate tasks
-    const bulkGenerateTasks = async (count = 1000) => {
+    const bulkGenerateTasks = async (count = 100, batchSize = 100) => {
+        let tasks = [];
+    
         for (let i = 0; i < count; i++) {
-            try {
-                const taskData = {
-                    title: faker.lorem.words(3),
-                    description: faker.lorem.sentence(),
-                    dueDate: faker.date.soon({ days: 30 }).toISOString().split("T")[0],
-                    status: faker.helpers.arrayElement(["Pending", "In Progress", "Completed"]),
-                    priority: faker.helpers.arrayElement(["Critical", "High", "Medium", "Low"]),
-                };
-
-                const response = await fetch(API_URL, {
-                    method: "POST",
-                    credentials: "include",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(taskData),
-                });
-
-                if (response.ok) {
-                    console.log(`✅ Task ${i + 1} added successfully`);
-                } else {
-                    console.error(`❌ Task ${i + 1} failed: ${(await response.json()).message}`);
+            tasks.push({
+                title: faker.lorem.words(3),
+                description: faker.lorem.sentence(),
+                dueDate: faker.date.soon({ days: 30 }).toISOString().split("T")[0],
+                status: faker.helpers.arrayElement(["Pending", "In Progress", "Completed"]),
+                priority: faker.helpers.arrayElement(["Critical", "High", "Medium", "Low"]),
+            });
+    
+            if (tasks.length === batchSize || i === count - 1) {
+                try {
+                    const response = await fetch("https://devtaskerb.up.railway.app/tasks/bulkCreateTasks", {
+                        method: "POST",
+                        credentials: "include", // Sends cookies for authentication
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ tasks }),
+                    });
+    
+                    if (response.ok) {
+                        console.log(`✅ ${tasks.length} tasks added successfully`);
+                    } else {
+                        console.error(`❌ Failed: ${(await response.json()).message}`);
+                    }
+                } catch (error) {
+                    console.error("Error adding tasks:", error);
                 }
-            } catch (error) {
-                console.error(`Error adding task ${i + 1}:`, error);
+    
+                tasks = []; // Clear array for next batch
             }
         }
     };
+    
+    
 
     return (
         <div className="add-task-container">
@@ -91,7 +98,7 @@ const AddTask = () => {
                 <button type="submit">Add Task</button>
             </form>
 
-            <button onClick={() => bulkGenerateTasks(1000)}>Generate 1000 Tasks</button>
+            <button onClick={() => bulkGenerateTasks(100)}>Generate 100 Tasks</button>
         </div>
     );
 };

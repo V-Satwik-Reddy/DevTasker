@@ -11,7 +11,7 @@ const Auth = () => {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const response = await fetch("http://localhost:5000/auth/verify", {
+                const response = await fetch("https://devtaskerb.up.railway.app/auth/verify", {
                     method: "GET",
                     credentials: "include",
                 });
@@ -42,7 +42,7 @@ const Auth = () => {
         const handleLogin = async (e) => {
             e.preventDefault();
             try {
-                const response = await fetch("http://localhost:5000/auth/login", {
+                const response = await fetch("https://devtaskerb.up.railway.app/auth/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     credentials: "include",
@@ -63,7 +63,7 @@ const Auth = () => {
         const handleSignup = async (e) => {
             e.preventDefault();
             try {
-                const response = await fetch("http://localhost:5000/auth/signup", {
+                const response = await fetch("https://devtaskerb.up.railway.app/auth/signup", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     credentials: "include",

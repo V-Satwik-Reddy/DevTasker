@@ -15,7 +15,7 @@ const TaskDetails = () => {
   useEffect(() => {
     const fetchTask = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/tasks/task/${id}`, {
+        const res = await fetch(`https://devtaskerb.up.railway.app/tasks/task/${id}`, {
           method: "GET",
           credentials: "include",
         });
@@ -37,7 +37,7 @@ const TaskDetails = () => {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:5000/tasks/updateTask/${id}`,
+        `https://devtaskerb.up.railway.app/tasks/updateTask/${id}`,
         { status, priority, dueDate },
         { withCredentials: true }
       );
@@ -53,7 +53,7 @@ const TaskDetails = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/tasks/deleteTask/${id}`, {
+      await axios.delete(`https://devtaskerb.up.railway.app/tasks/deleteTask/${id}`, {
         withCredentials: true,
       });
       alert("Task deleted successfully!");
@@ -68,7 +68,7 @@ const TaskDetails = () => {
     formData.append("file", file);
 
     try {
-      await axios.post(`http://localhost:5000/tasks/task/${id}/upload`, formData, {
+      await axios.post(`https://devtaskerb.up.railway.app/tasks/task/${id}/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("File uploaded successfully!");

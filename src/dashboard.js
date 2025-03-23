@@ -16,7 +16,7 @@ const Dashboard = ({ user }) => {
 
     const fetchTasks = async (status = "", sort = "desc") => {
         try {
-            const taskdata = await fetch(`http://localhost:5000/tasks/getTasks?status=${status}`, {
+            const taskdata = await fetch(`https://devtaskerb.up.railway.app/tasks/getTasks?status=${status}`, {
                 method: "GET",
                 credentials: "include",
             });
