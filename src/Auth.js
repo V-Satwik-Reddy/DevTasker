@@ -98,7 +98,7 @@ const Auth = () => {
                                 <input type="email" placeholder="Email" name="email" className="flip-card__input" required onChange={handleChange} />
                                 <input type="password" placeholder="Password" name="password" className="flip-card__input" required onChange={handleChange} />
                                 <button type="submit" className="flip-card__btn">Let’s go!</button>
-                                <a href="http://localhost:5000/auth/google" className="google-btn">
+                                <a href="https://devtaskerb.up.railway.app/auth/google" className="google-btn">
                                     <FaGoogle className="icon" /> Log In With Google
                                 </a>
                             </form>
@@ -110,7 +110,7 @@ const Auth = () => {
                                 <input type="email" placeholder="Email" name="email" className="flip-card__input" required onChange={handleChange} />
                                 <input type="password" placeholder="Password" name="password" className="flip-card__input" required onChange={handleChange} />
                                 <button type="submit" className="flip-card__btn">Confirm!</button>
-                                <a href="http://localhost:5000/auth/google" className="google-btn">
+                                <a href="https://devtaskerb.up.railway.app/auth/google" className="google-btn">
                                     <FaGoogle className="icon" /> Log In With Google
                                 </a>
                             </form>
