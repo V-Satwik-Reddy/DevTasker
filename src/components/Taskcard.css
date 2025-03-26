@@ -1,21 +1,23 @@
 .task-card {
-    background: #000000;
-    padding: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    
-  }
-  
-  .task-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .task-card h3, 
-.task-card p {
-    color: rgb(255, 255, 255);
+  background: #1a1a1a; /* Very dark grey background */
+  padding: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  font-family: "poppins", sans-serif;
+  letter-spacing: 1px;
 }
+
+.task-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.3); /* Orange hover shadow */
+}
+
+.task-card h3, 
+.task-card p {
+  color: #ffcc80; /* Light orange text */
+}
+
 .profile-img {
   width: 30px;
   height: 30px;
@@ -24,5 +26,5 @@
 }
 
 .user-icon {
-  color: #555;
+  color: #ffab40; /* Medium orange icon */
 }

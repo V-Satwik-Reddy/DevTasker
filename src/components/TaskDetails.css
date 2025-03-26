@@ -1,23 +1,30 @@
+body {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text for default */
+}
+
 .task-details-container {
     max-width: 600px;
     margin: 40px auto;
     padding: 20px;
-    background: #282c34;
+    background: #1a1a1a; /* Darker grey background for the container */
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    color: white;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* White shadow for visibility */
+    color: #ffffff; /* White text */
     text-align: center;
+    font-family: "poppins", sans-serif;
+    letter-spacing: 1px;
 }
 
 h2 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #61dafb;
+    color: #61dafb; /* React blue heading */
 }
 
 p {
     font-size: 16px;
-    color: #ddd;
+    color: #d1d1d1; /* Light grey paragraph */
     line-height: 1.5;
 }
 
@@ -26,7 +33,7 @@ label {
     font-size: 14px;
     font-weight: bold;
     margin-top: 15px;
-    color: #bbb;
+    color: #b0bec5; /* Light grey label */
 }
 
 select, input {
@@ -34,10 +41,10 @@ select, input {
     padding: 10px;
     margin-top: 5px;
     font-size: 14px;
-    border: 1px solid #61dafb;
+    border: 1px solid #61dafb; /* React blue border */
     border-radius: 6px;
     background: #3a3f47;
-    color: white;
+    color: #ffffff; /* White input text */
 }
 
 button {
@@ -47,16 +54,17 @@ button {
     margin-top: 20px;
     font-size: 16px;
     font-weight: bold;
-    color: black;
-    background: #61dafb;
+    color: #000000; /* Black button text */
+    background: #61dafb; /* React blue button */
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.1s ease-in-out;
 }
 
 button:hover {
     background: #4fa3d1;
+    transform: scale(1.02);
 }
 
 h3 {
@@ -69,7 +77,7 @@ input[type="file"] {
     border: none;
     background: none;
     font-size: 14px;
-    color: white;
+    color: #ffffff;
 }
 
 @media (max-width: 768px) {
