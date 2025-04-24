@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import { FaGoogle } from "react-icons/fa";
+import Loader from './loader.js';
 const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
@@ -82,7 +83,7 @@ const Auth = () => {
         };
     
 
-    if (isCheckingAuth) return <div>Loading...</div>;
+    if (isCheckingAuth) return <div><Loader/></div>;
 
     return (
         <div className="wrapper">

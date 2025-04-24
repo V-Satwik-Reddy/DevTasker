@@ -8,6 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingPage from "./Landingpage";
 import AddTask from "./addTask";
 import TaskDetails from "./components/TaskDetails";
+import Loader from './loader.js';
+
+
 <Router basename="/DevTasker"></Router>
 const ProtectedRoute = ({ element: Component }) => {
     const [user, setUser] = useState(null);
@@ -38,7 +41,7 @@ const ProtectedRoute = ({ element: Component }) => {
         checkAuth();
     }, []);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div><Loader/></div>;
     return (
         <>
             <NavbarComponent user={user} />

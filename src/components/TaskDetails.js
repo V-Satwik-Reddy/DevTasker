@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./TaskDetails.css";
-
+import Loader from './loader.js';
 const TaskDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -77,7 +77,7 @@ const TaskDetails = () => {
     }
   };
 
-  if (!task) return <p>Loading...</p>;
+  if (!task) return <p><Loader/></p>;
 
   return (
     <div className="task-details-container">
