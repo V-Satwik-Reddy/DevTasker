@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingPage from "./Landingpage";
 import AddTask from "./addTask";
 import TaskDetails from "./components/TaskDetails";
-import Loader from './loader.js';
+import Loader from './components/loader.jsx';
 
 
 <Router basename="/DevTasker"></Router>

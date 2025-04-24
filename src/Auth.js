@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import { FaGoogle } from "react-icons/fa";
-import Loader from './loader.js';
+import Loader from './components/loader.jsx';
 const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);

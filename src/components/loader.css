@@ -271,3 +271,10 @@
       transform: rotate(-1turn);
     }
   }
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* or any height you want */
+  }
+  

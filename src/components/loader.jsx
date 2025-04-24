@@ -3,11 +3,11 @@ import "./loader.css"; // assuming your CSS is saved here
 
 const Loader = () => {
   return (
+    <div class="center-container">
     <div
       aria-label="Orange and tan hamster running in a metal wheel"
       role="img"
-      className="wheel-and-hamster"
-    >
+      className="wheel-and-hamster">
       <div className="wheel"></div>
       <div className="hamster">
         <div className="hamster__body">
@@ -24,6 +24,7 @@ const Loader = () => {
         </div>
       </div>
       <div className="spoke"></div>
+    </div>
     </div>
   );
 };

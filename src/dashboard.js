@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import TaskCard from "./components/TaskCard";
-
 const Dashboard = ({ user }) => {
     const navigate = useNavigate();
     const [tasks, setTasks] = useState([]);

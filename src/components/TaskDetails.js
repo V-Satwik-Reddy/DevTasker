@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./TaskDetails.css";
-import Loader from './loader.js';
+import Loader from './loader.jsx';
 const TaskDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
